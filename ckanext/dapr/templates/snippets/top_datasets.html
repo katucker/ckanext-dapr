@@ -1,0 +1,23 @@
+<section id="dapr-top-datasets" class="module-content tab-content">
+    <h2>{{ _('Most Accessed Datasets') }}</h2>
+    {% if top_datasets %}
+      <table class="table table-bordered table-custom">
+        <thead>
+          <tr>
+            <th>{{_('Dataset title') }}</th>
+            <th class="metric">{{ _('Number of Accesses') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dataset, num_accesses in top_datasets %}
+            <tr>
+              <th>{{ h.link_to(dataset.title or dataset.name, h.url_for('dataset.read', id=dataset.name)) }}</th>
+              <td class="metric">{{ num_accesses }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="empty">{{ _('No dataset accesses') }}</p>
+    {% endif %}
+</section>

@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% block content %}
+    {% block topblock %}
+        <h1>Top Datasets by Access</h1>
+        {% for d in datasets %}
+            <a href="{{d.url}}">{{d.title}}</a>
+        %{ endfor %}
+    {% endblock  %}
+{% endblock %}

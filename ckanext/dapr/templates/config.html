@@ -1,0 +1,63 @@
+{% ckan_extends %}
+
+{% import 'macros/form.html' as form %}
+
+{% block admin_form %}
+
+  {{ super() }}
+
+  <h3>Digital Analytics Program analytics configuration parameters </h3>
+
+  {{ form.input('ckanext.dapanalytics.retrieval_agency', 
+  id='field-ckanext.dapanalytics.retrieval_agency', 
+  label=_('Agency name'), 
+  value=data['ckanext.dapanalytics.retrieval_agency'], 
+  required,
+  error=errors['ckanext.dapanalytics.retrieval_agency']) }}
+
+  {{ form.input('ckanext.dapanalytics.show_downloads', 
+  id='field-ckanext.dapanalytics.show_downloads', 
+  label=_('Show download count'), 
+  type='checkbox',
+  checked=data['ckanext.dapanalytics.show_downloads'], 
+  error=errors['ckanext.dapanalytics.show_downloads']) }}
+
+  {{ form.input('ckanext.dapanalytics.api_url', 
+  id='field-ckanext.dapanalytics.api_url', 
+  label=_('URL for retrieving analytics'), 
+  value=data['ckanext.dapanalytics.api_url'], 
+  error=errors['ckanext.dapanalytics.api_url']) }}
+
+  {{ form.input('ckanext.dapanalytics.batch_size', 
+  id='field-ckanext.dapanalytics.batch_size', 
+  label=_('Retrieval batch size (maximum 10000)'), 
+  value=data['ckanext.dapanalytics.batch_size'], 
+  error=errors['ckanext.dapanalytics.batch_size']) }}
+
+
+{% endblock %}
+
+
+{% block admin_form_help %}
+
+  {{ super() }}
+
+  <p>Digital Analytics Program analytics parameters are described in 
+    the <a href="https://open.gsa.gov/api/dap/">DAP API</a>
+    documentation on the open.gsa.gov website.</p>
+
+  <p><strong>Agency name:</strong> The name of the agency for which to 
+    retrieve analytics.</p>
+
+  <p><strong>Show download count:</strong> Whether to display a count of
+    downloads on a resource's page.</p>
+
+  <p><strong>URL for retrieving analytics:</strong> The base URL for the 
+    DAP API. Provided for easing future changes to the DAP API.</p>
+
+  <p><strong>Retrieval batch size:</strong> The number of analytic
+    records to retrieve in each call to the DAP API. The default
+    size is 1,000 records, and the DAP API caps the number allowed per
+    call to 10,000.</p>
+
+{% endblock %}

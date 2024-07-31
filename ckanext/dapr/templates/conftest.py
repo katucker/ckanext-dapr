@@ -1,0 +1,2 @@
+.. literalinclude:: /../conftest.py
+
